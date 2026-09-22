@@ -1,0 +1,17 @@
+{
+  "name": "openapi-boundary-review",
+  "version": "0.1.0",
+  "description": "Offline authorization review worksheets from OpenAPI 3 JSON",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "openapi-boundary-review": "./bin/review.mjs"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}
