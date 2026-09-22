@@ -101,12 +101,12 @@ export function toMarkdown(report) {
     '',
     'This is a review worksheet, not a vulnerability scan. Confirm expected behavior with the API owner before testing an authorized environment.',
     '',
-    '| Endpoint | Security in spec | Object references | Review case | Question | Status | Evidence |',
-    '| --- | --- | --- | --- | --- | --- | --- |',
+    '| Endpoint | Security in spec | Object references | Review case | Question | Expected behavior | Status | Evidence |',
+    '| --- | --- | --- | --- | --- | --- | --- | --- |',
   ];
 
   for (const row of report.checks) {
-    lines.push(`| ${cell(row.endpoint)} | ${cell(row.security)} | ${cell(row.references.join(', ') || '—')} | ${cell(row.case)} | ${cell(row.question)} | Not reviewed |  |`);
+    lines.push(`| ${cell(row.endpoint)} | ${cell(row.security)} | ${cell(row.references.join(', ') || '—')} | ${cell(row.case)} | ${cell(row.question)} |  | Not reviewed |  |`);
   }
   lines.push('', '## Review notes', '',
     '- A missing OpenAPI security declaration does not prove that the live endpoint is public.',
@@ -116,11 +116,11 @@ export function toMarkdown(report) {
 }
 
 export function toCsv(report) {
-  const columns = ['Endpoint', 'Security in spec', 'Object references', 'Review case', 'Question', 'Status', 'Evidence'];
+  const columns = ['Endpoint', 'Security in spec', 'Object references', 'Review case', 'Question', 'Expected behavior', 'Status', 'Evidence'];
   const lines = [columns.map(csvCell).join(',')];
   for (const row of report.checks) {
     lines.push([
-      row.endpoint, row.security, row.references.join(', '), row.case, row.question, 'Not reviewed', '',
+      row.endpoint, row.security, row.references.join(', '), row.case, row.question, '', 'Not reviewed', '',
     ].map(csvCell).join(','));
   }
   return `${lines.join('\r\n')}\r\n`;
